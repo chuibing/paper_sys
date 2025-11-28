@@ -12,6 +12,7 @@
 ---
 
 ## 📁 项目结构
+```
 main/
 ├── sql_script/                 # 数据库脚本
 │   ├── create_tables.sql       # 建表语句
@@ -34,6 +35,7 @@ main/
 │   └── config.py               # 配置文件（数据库连接等）
 │
 └── README.md
+```
 
 ---
 
@@ -43,48 +45,68 @@ main/
 ```bash
 git clone https://github.com/Dawn0101/paper_sys.git
 cd paper_sys
-'''
+```
 
 ### 2. 创建 Conda 虚拟环境（Python 3.12）
-
+```bash
 conda create -n paper_sys python=3.12
 conda activate paper_sys
+```
 
 ### 3. 安装 Python 依赖
-
+```bash
 pip install -r requirements.txt
+```
 
 ### 4. 初始化数据库
-
+```sql
 -- 执行 sql_script/create_tables.sql
 -- 执行 sql_script/update_data.sql（含测试用户）
+```
 
 ### 5. 启动服务
-
+```bash
 python paper_sys/app.py
+```
 
+---
 
-🔐 测试账号
-角色	用户名	密码
-学生	lisi	123456
-⚠️ 注意：当前为开发版本，密码以明文存储于数据库（仅用于调试）。正式场景应使用 werkzeug.security 哈希加密。
+## 🔐 测试账号
+
+| 角色       | 用户名 | 密码   |
+|------------|--------|--------|
+| 学生       | lisi   | 123456 |
+
+⚠️ 注意：当前为开发版本，密码以明文存储于数据库（仅用于调试）。正式场景应使用 `werkzeug.security` 哈希加密。
+
+---
 
 ## 🛠️ 技术说明
-### 前端：纯 HTML + CSS + JavaScript（无 Vue CLI / Vite / Webpack）
-使用 vue.global.js 实现响应式交互（非单文件组件）
-页面按角色分目录组织，便于维护
-### 后端：
-Flask 作为 Web 框架
-SQLAlchemy 作为 ORM
-分层架构：models → repositories → views
-### 数据库：SQLite（默认），支持切换至 MySQL（修改 config.py）
 
-##📌 当前功能
- 多角色登录（学生 / 学院管理员 / 校级管理员）
- 用户认证 API（/api/login）
- 学院信息查询
- 论文提交与审核（待实现）
-📄 License
+### 前端
+- 纯 HTML + CSS + JavaScript（无 Vue CLI / Vite / Webpack）
+- 使用 vue.global.js 实现响应式交互（非单文件组件）
+- 页面按角色分目录组织，便于维护
+
+### 后端
+- Flask 作为 Web 框架
+- SQLAlchemy 作为 ORM
+- 分层架构：models → repositories → views
+
+### 数据库
+- SQLite（默认），支持切换至 MySQL（修改 config.py）
+
+---
+
+## 📌 当前功能
+- 多角色登录（学生 / 学院管理员 / 校级管理员）
+- 用户认证 API（`/api/login`）
+- 学院信息查询
+- 论文提交与审核（待实现）
+
+---
+
+## 📄 License
 本项目为课程教学用途，禁止用于商业场景。
 
 © 2025 Your Name. All rights reserved.
