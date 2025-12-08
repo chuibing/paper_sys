@@ -109,4 +109,3 @@ python paper_sys/app.py
 ## 📄 License
 本项目为课程教学用途，禁止用于商业场景。
 
-© 2025 Your Name. All rights reserved.
