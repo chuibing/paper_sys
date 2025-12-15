@@ -56,15 +56,21 @@ paper_sys/
 ## 🚀 快速启动
 
 ### 1. 克隆项目
+```
 git clone https://github.com/Dawn0101/paper_sys.git
 cd paper_sys
+```
 
 ### 2. 创建 Conda 虚拟环境（Python 3.12）
+```
 conda create -n paper_sys python=3.12
 conda activate paper_sys
+```
 
 ### 3. 安装依赖
+```
 pip install -r requirements.txt
+```
 
 ### 4. 初始化数据库
 -- 执行 sql_script/create.sql
