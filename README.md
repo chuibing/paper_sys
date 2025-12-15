@@ -73,13 +73,17 @@ pip install -r requirements.txt
 ```
 
 ### 4. 初始化数据库
+```
 -- 执行 sql_script/create.sql
 -- 执行 sql_script/triggers.sql(触发器）
 -- 执行 sql_script/db_init.py（paper表和keyword表）
 -- 执行 sql_script/db_init_rest.py（其余表）
+```
 
 ### 5. 启动服务
+```
 python app.py
+```
 
 > 访问 http://localhost:5000 即可进入系统
 
