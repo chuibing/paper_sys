@@ -8,7 +8,7 @@ class Config:
         f"mysql+pymysql://{os.environ.get('MYSQL_USER', 'root')}:"
         f"{os.environ.get('MYSQL_PASSWORD', '123456')}@"
         f"{os.environ.get('MYSQL_HOST', 'localhost')}/"
-        f"{os.environ.get('MYSQL_DB', 'paper_system')}?charset=utf8mb4"
+        f"{os.environ.get('MYSQL_DB', 'paper_sys')}?charset=utf8mb4"
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
