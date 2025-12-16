@@ -1,5 +1,75 @@
 # user/repositories.py
-from .models import User,Role, College, db
+from datetime import date
+from .models import User, Role, College, UserTask, db
+
+class UserTaskRepository:
+    @staticmethod
+    def get_all_tasks(user_id: int):
+        return UserTask.query.filter_by(user_id=user_id).order_by(UserTask.created_at.desc()).all()
+
+    @staticmethod
+    def create_task(user_id: int, data: dict):
+        task = UserTask(
+            user_id=user_id,
+            scheduled_date=data['scheduled_date'],
+            title=data['title'],
+            # description=data.get('description', ''),
+            priority=data.get('priority', 'medium'),
+            status=data.get('status', 'pending')
+        )
+        db.session.add(task)
+        db.session.commit()
+        # Flask-SQLAlchemy 不支持 refresh()，但插入后 ID 已自动赋值
+        return task
+
+    @staticmethod
+    def update_task(task_id: int, data: dict):
+        task = UserTask.query.get(task_id)
+        if not task:
+            return None
+        for key, value in data.items():
+            if hasattr(task, key):
+                setattr(task, key, value)
+        # 自动更新 updated_at（如果模型中用了 default + onupdate）
+        db.session.commit()
+        return task
+
+    @staticmethod
+    def complete_task(task_id: int):
+        task = UserTask.query.get(task_id)
+        if not task:
+            return None
+        task.status = 'completed'
+        db.session.commit()
+        return task
+
+    @staticmethod
+    def delete_task(task_id: int):
+        task = UserTask.query.get(task_id)
+        if not task:
+            return False
+        db.session.delete(task)
+        db.session.commit()
+        return True
+
+    @staticmethod
+    def get_calendar_events(user_id: int, start_date: date, end_date: date):
+        return UserTask.query.filter(
+            UserTask.user_id == user_id,
+            UserTask.scheduled_date >= start_date,
+            UserTask.scheduled_date <= end_date
+        ).all()
+    
+    @staticmethod
+    def get_task_by_id(task_id: int, user_id: int) -> UserTask | None:
+        """
+        根据任务 ID 和用户 ID 获取单个任务（确保权限隔离）
+        """
+        return UserTask.query.filter_by(
+            task_id=task_id,
+            user_id=user_id
+        ).first()
+
 
 def get_user_by_username(username: str) -> User | None:
     return User.query.filter_by(username=username).first()

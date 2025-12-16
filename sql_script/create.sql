@@ -15,7 +15,7 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     real_name VARCHAR(100),
-    role ENUM('student', 'college_admin', 'university_admin') NOT NULL,
+    role VARCHAR(50) NOT NULL,          -- ← 关键：用 VARCHAR，不是 ENUM
     college_id INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,

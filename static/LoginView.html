@@ -498,9 +498,9 @@
                     <div class="demo-info">
                         <h4>演示账户信息</h4>
                         <ul>
-                            <li>学生账户: student / 123456</li>
-                            <li>学院管理员: college / 123456</li>
-                            <li>学校管理员: university / 123456</li>
+                            <li>学生账户: stu_cs_01 / 123456</li>
+                            <li>学院管理员: admin_cs / 123456</li>
+                            <li>学校管理员: admin_uni / 123456</li>
                         </ul>
                     </div>
                 </div>
@@ -598,10 +598,10 @@
                             throw new Error(`HTTP错误! 状态: ${response.status}`);
                         }
         
-                        const data = await response.json();
+                        const result = await response.json();
         
                         // 假设API返回的数据格式是数组
-                        colleges.value = data;
+                        colleges.value = result.data;
                     } catch (error) {
                         console.error('获取学院数据失败:', error);
                         ElMessage.error('获取学院数据失败，请刷新页面重试');

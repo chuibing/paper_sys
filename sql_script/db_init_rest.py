@@ -70,7 +70,7 @@ def main():
         cur.execute("""
             INSERT INTO users (username, password_hash, real_name, role, college_id)
             VALUES (%s, %s, %s, %s, %s)
-        """, ('admin_uni', PASSWORD_HASH, '张校长', 'university_admin', list(college_ids.values())[0]))
+        """, ('admin_uni', PASSWORD_HASH, '张校长', 'UNIVERSITY_ADMIN', list(college_ids.values())[0]))
         user_id_map['admin_uni'] = cur.lastrowid
 
         # 院级管理员
@@ -81,7 +81,7 @@ def main():
             cur.execute("""
                 INSERT INTO users (username, password_hash, real_name, role, college_id)
                 VALUES (%s, %s, %s, %s, %s)
-            """, (username, PASSWORD_HASH, real_name, 'college_admin', college_ids[code]))
+            """, (username, PASSWORD_HASH, real_name, 'COLLEGE_ADMIN', college_ids[code]))
             admin_users.append(cur.lastrowid)
 
         # 学生：每学院 20 人
@@ -94,7 +94,7 @@ def main():
                 cur.execute("""
                     INSERT INTO users (username, password_hash, real_name, role, college_id)
                     VALUES (%s, %s, %s, %s, %s)
-                """, (username, PASSWORD_HASH, real_name, 'student', cid))
+                """, (username, PASSWORD_HASH, real_name, 'STUDENT', cid))
                 student_users.append(cur.lastrowid)
         conn.commit()
 
