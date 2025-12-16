@@ -598,10 +598,10 @@
                             throw new Error(`HTTP错误! 状态: ${response.status}`);
                         }
         
-                        const data = await response.json();
+                        const result = await response.json();
         
                         // 假设API返回的数据格式是数组
-                        colleges.value = data;
+                        colleges.value = result.data;
                     } catch (error) {
                         console.error('获取学院数据失败:', error);
                         ElMessage.error('获取学院数据失败，请刷新页面重试');
